@@ -1,88 +1,87 @@
-import { useState, useCallback, useRef } from "react";
-import { ResizeMode, Video } from "expo-av";
-import * as Animatable from "react-native-animatable";
 import {
+  View,
+  Text,
   FlatList,
-  Image,
-  ImageBackground,
   TouchableOpacity,
-  ViewabilityHelper,
+  ImageBackground,
+  Image,
 } from "react-native";
-
+import React, { useRef, useState,useCallback } from "react";
+import * as Animatable from "react-native-animatable";
 import { icons } from "../constants";
+import { ResizeMode, Video } from "expo-av";
+import { useVideoPlayer, VideoView } from "expo-video";
 
 const zoomIn = {
-  0: { scale: 0.9 },
-  1: { scale: 1 },
+  0: {
+    scale: 0.9,
+  },
+  1: {
+    scale: 1.1,
+  },
+};
+const zoomOut = {
+  0: {
+    scale: 1,
+  },
+  1: {
+    scale: 0.9,
+  },
 };
 
-const zoomOut = {
-  0: { scale: 1 },
-  1: { scale: 0.9 },
-};
 
 const TrendingItem = ({ activeItem, item }) => {
+  const player = useVideoPlayer(item.video);
   const [play, setPlay] = useState(false);
+
+  // Jaise hi "play" state true ho, video automatically play ho
+  React.useEffect(() => {
+    if (play) {
+      player.play();
+    }
+  }, [play]);
 
   return (
     <Animatable.View
-      // className="mr-5"
       style={{ marginRight: 20 }}
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
       {play ? (
-        <Video
-          source={{ uri: item.video }}
-          // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+        <VideoView 
+          player={player} 
           style={{
             width: 208,
             height: 288,
-            borderRadius: 33,
+            borderRadius: 35,
             marginTop: 12,
-            backgroundColor: "#ffffff1a",
-          }}
-          resizeMode={ResizeMode.CONTAIN}
-          useNativeControls
-          shouldPlay
-          onPlaybackStatusUpdate={(status) => {
-            if (status.didJustFinish) {
-              setPlay(false);
-            }
-          }}
+            backgroundColor: "#FFFEFE",
+          }} 
+          nativeControls
         />
       ) : (
         <TouchableOpacity
-          // className="relative flex justify-center items-center"
           style={{
             position: "relative",
             justifyContent: "center",
             alignItems: "center",
           }}
           activeOpacity={0.7}
-          onPress={() => setPlay(true)}
+          onPress={() => setPlay(true)} // Ek hi click par video play ho jayegi
         >
           <ImageBackground
-            source={{ uri: item.thumbnail }}
-            // className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
             style={{
               width: 208,
               height: 288,
-              borderRadius: 33,
+              borderRadius: 52,
               marginTop: 20,
-              marginBottom: 20,
               overflow: "hidden",
-              shadowOffset: 4,
-              shadowRadius: 10,
-              shadowOpacity: 1,
-              shadowColor: "#00000066",
             }}
+            source={{ uri: item.thumbnail }}
             resizeMode="cover"
           />
-
           <Image
             source={icons.play}
-            // className="w-12 h-12 absolute"
             style={{ width: 48, height: 48, position: "absolute" }}
             resizeMode="contain"
           />
@@ -92,30 +91,32 @@ const TrendingItem = ({ activeItem, item }) => {
   );
 };
 
-const Trending = ({ posts }) => {
-  const [activeItem, setActiveItem] = useState(posts[0]?.$id);
-  const viewabilityConfig = { itemVisiblePercentThreshold: 70 };
 
-  const onViewableItemsChanged = useCallback(({ viewableItems }) => {
+
+
+const Trending = ({ posts }) => {
+  const [activeItem, setActiveItem] = useState(posts[1]);
+
+  // useCallback ka use kiya taake function ka reference change na ho
+  const viewableItemsChanged = useCallback(({ viewableItems }) => {
     if (viewableItems.length > 0) {
-      setActiveItem(viewableItems[0]?.key);
+      setActiveItem(viewableItems[0].key);
     }
   }, []);
-
-  const viewabilityConfigCallbackPairs = useRef([
-    { viewabilityConfig, onViewableItemsChanged },
-  ]);
 
   return (
     <FlatList
       data={posts}
-      horizontal
       keyExtractor={(item) => item.$id}
       renderItem={({ item }) => (
         <TrendingItem activeItem={activeItem} item={item} />
       )}
-      viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current} // ✅ Fixed
+      onViewableItemsChanged={viewableItemsChanged} // Ab ye error nahi dega
+      viewabilityConfig={{
+        itemVisiblePercentThreshold: 70,
+      }}
       contentOffset={{ x: 170 }}
+      horizontal
     />
   );
 };
