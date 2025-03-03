@@ -233,8 +233,6 @@ const Create = () => {
     });
 
     if (!result.canceled) {
-      console.log("Picked Image==>", result);
-      
       if (selectType === "image") {
         setForm({
           ...form,
