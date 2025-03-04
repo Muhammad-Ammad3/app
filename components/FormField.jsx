@@ -50,7 +50,7 @@ const FormField = ({
           style={{
             flex: 1,
             color: "#fff",
-            fontFamily: "Poppins-SemiBold sans-serif",
+            fontFamily: "Poppins-SemiBold, sans-serif",
             fontSize: 16,
             lineHeight: 24,
           }}

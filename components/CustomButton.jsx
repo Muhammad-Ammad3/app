@@ -23,14 +23,13 @@ const CustomButton = ({
       className={`bg-secondary rounded-xl min-h-[62px] flex flex-row justify-center items-center ${containerStyles} ${
         isLoading ? "opacity-50" : ""
       }`}
-      
       disabled={isLoading}
     >
       <Text
         className={`text-primary font-psemibold text-lg ${textStyles}`}
         style={{
           color: "#161622",
-          fontFamily: "Poppins-SemiBold sans-serif",
+          fontFamily: "Poppins-SemiBold, sans-serif",
           fontSize: 18,
           lineHeight: 28,
         }}
@@ -44,7 +43,7 @@ const CustomButton = ({
           color="#fff"
           size="small"
           className="ml-2"
-          style={{marginLeft: 8}}
+          style={{ marginLeft: 8 }}
         />
       )}
     </TouchableOpacity>

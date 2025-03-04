@@ -1,6 +1,4 @@
 import {
-  View,
-  Text,
   FlatList,
   TouchableOpacity,
   ImageBackground,
@@ -34,7 +32,6 @@ const TrendingItem = ({ activeItem, item }) => {
   const player = useVideoPlayer(item.video);
   const [play, setPlay] = useState(false);
 
-  // Jaise hi "play" state true ho, video automatically play ho
   React.useEffect(() => {
     if (play) {
       player.play();
@@ -67,7 +64,7 @@ const TrendingItem = ({ activeItem, item }) => {
             alignItems: "center",
           }}
           activeOpacity={0.7}
-          onPress={() => setPlay(true)} // Ek hi click par video play ho jayegi
+          onPress={() => setPlay(true)} 
         >
           <ImageBackground
             style={{
@@ -97,7 +94,6 @@ const TrendingItem = ({ activeItem, item }) => {
 const Trending = ({ posts }) => {
   const [activeItem, setActiveItem] = useState(posts[1]);
 
-  // useCallback ka use kiya taake function ka reference change na ho
   const viewableItemsChanged = useCallback(({ viewableItems }) => {
     if (viewableItems.length > 0) {
       setActiveItem(viewableItems[0].key);
@@ -111,7 +107,7 @@ const Trending = ({ posts }) => {
       renderItem={({ item }) => (
         <TrendingItem activeItem={activeItem} item={item} />
       )}
-      onViewableItemsChanged={viewableItemsChanged} // Ab ye error nahi dega
+      onViewableItemsChanged={viewableItemsChanged} 
       viewabilityConfig={{
         itemVisiblePercentThreshold: 70,
       }}

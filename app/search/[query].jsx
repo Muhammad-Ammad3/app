@@ -46,7 +46,7 @@ const Search = () => {
               <Text
                 className="font-pmedium text-gray-100 text-sm"
                 style={{
-                  fontFamily: "Poppins-Medium sans-serif",
+                  fontFamily: "Poppins-Medium, sans-serif",
                   color: "#cdcde0",
                   fontSize: 14,
                   lineHeight: 20,
@@ -59,7 +59,7 @@ const Search = () => {
                 style={{
                   fontSize: 24,
                   lineHeight: 32,
-                  fontFamily: "Poppins-SemiBold sans-serif",
+                  fontFamily: "Poppins-SemiBold, sans-serif",
                   color: "#fff",
                   marginTop: 4,
                 }}

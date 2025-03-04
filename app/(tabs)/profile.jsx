@@ -102,7 +102,7 @@ const Profile = () => {
 
             <View
               className="mt-5 flex flex-row"
-              style={{ marginTop: 20, flexDirection: "row" }}
+              style={{ marginTop: 20, flexDirection: "row", display: "flex", gap: 30 }}
             >
               <InfoBox
                 title={posts.length || 0}
@@ -118,7 +118,6 @@ const Profile = () => {
             </View>
           </View>
         )}
-        // horizontal
       />
     </SafeAreaView>
   );

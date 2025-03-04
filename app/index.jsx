@@ -89,7 +89,7 @@ const Welcome = () => {
             style={{
               fontSize: 14,
               lineHeight: 20,
-              fontFamily: "Poppins-Regular sans-serif",
+              fontFamily: "Poppins-Regular, sans-serif",
               color: "#CDCDE0",
               marginTop: 28,
               textAlign: "center",

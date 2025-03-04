@@ -11,7 +11,6 @@ const EmptyState = ({ title, subtitle }) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        // alignItems: "center",
         paddingLeft: 16,
         paddingRight: 16,
       }}
@@ -28,7 +27,7 @@ const EmptyState = ({ title, subtitle }) => {
         style={{
           fontSize: 14,
           lineHeight: 20,
-          fontFamily: "Poppins-Medium sans-serif",
+          fontFamily: "Poppins-Medium, sans-serif",
           color: "#cdcde0",
           textAlign: "center"
         }}

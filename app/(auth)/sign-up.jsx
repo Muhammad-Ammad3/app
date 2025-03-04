@@ -58,11 +58,20 @@ const SignUp = () => {
             source={images.logo}
             resizeMode="contain"
             className="w-[115px] h-[34px]"
-            style={{width: 115, height: 34}}
+            style={{ width: 115, height: 34 }}
           />
 
-          <Text className="text-2xl font-semibold text-white mt-10 font-psemibold"
-          style={{fontSize: 24, lineHeight: 32, fontWeight: 600, color: "#fff", marginTop: 40, fontFamily: "Poppins-SemiBold sans-serif"}}>
+          <Text
+            className="text-2xl font-semibold text-white mt-10 font-psemibold"
+            style={{
+              fontSize: 24,
+              lineHeight: 32,
+              fontWeight: 600,
+              color: "#fff",
+              marginTop: 40,
+              fontFamily: "Poppins-SemiBold, sans-serif",
+            }}
+          >
             Sign Up to Aora
           </Text>
 
@@ -95,16 +104,35 @@ const SignUp = () => {
             isLoading={isSubmitting}
           />
 
-          <View className="flex justify-center pt-5 flex-row gap-2"
-          style={{justifyContent: "center", paddingTop: 20, flexDirection: "row", gap: 8}}>
-            <Text className="text-lg text-gray-100 font-pregular"
-            style={{fontSize: 18, lineHeight: 28, color: "#CDCDE0", fontFamily: "Poppins-Regular sans-serif"}}>
+          <View
+            className="flex justify-center pt-5 flex-row gap-2"
+            style={{
+              justifyContent: "center",
+              paddingTop: 20,
+              flexDirection: "row",
+              gap: 8,
+            }}
+          >
+            <Text
+              className="text-lg text-gray-100 font-pregular"
+              style={{
+                fontSize: 18,
+                lineHeight: 28,
+                color: "#CDCDE0",
+                fontFamily: "Poppins-Regular, sans-serif",
+              }}
+            >
               Have an account already?
             </Text>
             <Link
               href="/sign-in"
               className="text-lg font-psemibold text-secondary"
-              style={{fontSize: 18, lineHeight: 28,color: "#FF9C01", fontFamily: "Poppins-SemiBold sans-serif"}}
+              style={{
+                fontSize: 18,
+                lineHeight: 28,
+                color: "#FF9C01",
+                fontFamily: "Poppins-SemiBold, sans-serif",
+              }}
             >
               Login
             </Link>
